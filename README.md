@@ -27,6 +27,8 @@ After adjustments based on data and literature, we have define a global index :
 
 This index is seetling between 0 and 15 mainely and is an evaluation of the dangerousity of a place. The coefficient are choosen to set both FFMC, ISI and BS between 0 and 5 and so to give all of them the same impact on the final global index I. Tests based on a large amount of data are needed to adjust coefficient a, b, and c. 
 
+I appears to be a good indicator of the risk a wildfire to appear.
+
 ## III. Altitude
 
 Now that we know which areas to monitor, we need to choose the height at which the drone should position itself. The higher the drone, the less precise the ground surface can be observed, especially with a camera without optical zoom. We decided to use a generalized drone camera model capable of filming in HD. Our experiment aimed to determine a relationship between surveillance height and the area engulfed in flames, symbolized by cardboard cutouts.
