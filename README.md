@@ -8,9 +8,8 @@ Climate change brings about an increase in natural disasters, notably forest fir
 Predicting the occurrence of forest fires is challenging. To limit their spread, we aim to detect them quickly through territorial surveillance. Current surveillance methods have their advantages and disadvantages, but drones emerge as the most effective tool. Hence, we decided to make it our surveillance means, but automation is essential.
 
 To make the drone autonomous in surveillance, it needs autonomous movements:
-
-A predefined flight plan
-Predefined altitude management
+* A predefined flight plan
+* Predefined altitude management
 We will address each of these requirements separately.
 
 II. Flight Plan
