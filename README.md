@@ -58,6 +58,11 @@ Using the Kalman Filter to merge data from various onboard sensors, we obtained 
 
 In conclusion, we can determine the drone's path and altitude for monitoring a territory and potentially detecting a fire. We have defined surveillance methods for each risk index, which remain subjective and must be adjusted through numerous experiments. We initiated the validation of our model with a first test flight in fields, surveilling a 2.6 km^2 area and defining zones with risk indices. The drone followed predefined paths, providing comprehensive surveillance of the considered territory.
 
+
+![Test Flight](assets/test_flight.png)
+
+
+
 ## Conclusion
 
 Parameters may need adjustment after further experimentation to reduce the necessary budget. These parameters must be chosen following rigorous testing.
