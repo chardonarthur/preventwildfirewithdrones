@@ -2,7 +2,7 @@
 
 Hello Sir,
 
-I am pleased to present the project I undertook with a colleague as part of the TIPE on the theme of health/prevention. Quickly, a theme came to mind - wildfires that threaten the lives of thousands of humans each year. This led us to ponder on how...
+Wildfires threaten the lives of thousands of humans each year. This led us to ponder on how to prevent the development of fires using drones?
 
 I. Drones: Preventing Forest Fires
 
