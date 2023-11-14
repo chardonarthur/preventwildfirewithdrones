@@ -40,13 +40,18 @@ Using different-sized cardboard cutouts, we noted the heights from which the cut
 Using the Kalman Filter to merge data from various onboard sensors, we obtained a more accurate altitude estimation, with a 95% confidence interval of around 0.8m. We can model this curve as an almost consistently linear line, closely approaching the origin.
 
 
+
 ![Improving Precision](assets/approximation_with_kalman.png)
+
 
 
 ![Improving Precision](assets/linear_model.png)
 
 
+
 ![Kalman_working](assets/kalman_filter_in_french.png)
+
+
 
 
 ## IV. Final Surveillance Model
