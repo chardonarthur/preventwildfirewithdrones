@@ -22,7 +22,7 @@ After consulting global wildfire risk assessment models, we chose three risk ind
 * BS = Burned Surfaces
 
 After adjustments based on data and literature, we have define a global index : 
->I = A*F + b*R +c*S**1/2
+>I = a*FFMC + b*ISI +c*BS**1/2
 >with a=0.011, b=0,000297, c=0,000063
 
 This index is seetling between 0 and 15 mainely and is an evaluation of the dangerousity of a place.
