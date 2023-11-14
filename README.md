@@ -21,7 +21,10 @@ After consulting global wildfire risk assessment models, we chose three risk ind
 * ISI = Initial Spread Index
 * BS = Burned Surfaces
 
-After adjustments based on data and literature, we have define a global index : I = F/90 + 0.89*R/300 +0.63*S**(1/2)/10**4
+After adjustments based on data and literature, we have define a global index : 
+>I = A*F + b*R +c*S**1/2
+>with a=0.011, b=0,000297, c=0,000063
+
 ## III. Altitude
 
 Now that we know which areas to monitor, we need to choose the height at which the drone should position itself. The higher the drone, the less precise the ground surface can be observed, especially with a camera without optical zoom. We decided to use a generalized drone camera model capable of filming in HD. Our experiment aimed to determine a relationship between surveillance height and the area engulfed in flames, symbolized by cardboard cutouts.
