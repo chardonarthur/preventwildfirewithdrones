@@ -1,7 +1,7 @@
 Wildfires threaten the lives of thousands of humans each year. This led us to ponder on 
 # How to prevent the development of fires using drones?
 
-##I. Drones: Preventing Forest Fires
+## I. Drones: Preventing Forest Fires
 
 Climate change brings about an increase in natural disasters, notably forest fires. These fires jeopardize the lives of populations near forests and the well-being of all living beings and available resources.
 
@@ -12,7 +12,7 @@ To make the drone autonomous in surveillance, it needs autonomous movements:
 * Predefined altitude management
 We will address each of these requirements separately.
 
-##II. Flight Plan
+## II. Flight Plan
 
 The flight plan must adapt to each environment, considering the terrain's topography provided by maps and areas with a particularly high risk of fire. To evaluate the fire risk, we use the historical data of forest fires in the south of France since 1973. We will adopt this method to define a risk index in each zone.
 
@@ -22,7 +22,7 @@ After consulting global wildfire risk assessment models, we chose three risk ind
 * BS = Burned Surfaces
 
 After adjustments based on data and literature, we have define a global index : I = F/90 + 0.89*R/300 +0.63*S**(1/2)/10**4
-##III. Altitude
+## III. Altitude
 
 Now that we know which areas to monitor, we need to choose the height at which the drone should position itself. The higher the drone, the less precise the ground surface can be observed, especially with a camera without optical zoom. We decided to use a generalized drone camera model capable of filming in HD. Our experiment aimed to determine a relationship between surveillance height and the area engulfed in flames, symbolized by cardboard cutouts.
 
@@ -30,11 +30,11 @@ Using different-sized cardboard cutouts, we noted the heights from which the cut
 
 Using an algorithm to merge data from various onboard sensors, we obtained a more accurate altitude estimation, with a 95% confidence interval of around 0.8m. We can model this curve as an almost consistently linear line, closely approaching the origin.
 
-##IV. Final Surveillance Model
+## IV. Final Surveillance Model
 
 In conclusion, we can determine the drone's path and altitude for monitoring a territory and potentially detecting a fire. We have defined surveillance methods for each risk index, which remain subjective and must be adjusted through numerous experiments. We initiated the validation of our model with a first test flight in fields, surveilling a 2.6 km^2 area and defining zones with risk indices. The drone followed predefined paths, providing comprehensive surveillance of the considered territory.
 
-##Conclusion
+## Conclusion
 
 Parameters may need adjustment after further experimentation to reduce the necessary budget. These parameters must be chosen following rigorous testing.
 
