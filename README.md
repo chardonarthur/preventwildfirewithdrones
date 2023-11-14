@@ -62,6 +62,27 @@ In conclusion, we can determine the drone's path and altitude for monitoring a t
 ![Test Flight](assets/test_flight.png)
 
 
+## V. Financial Evaluation for Forest Surveillance in Corsica
+
+In order to establish a robust forest surveillance system in Corsica, we have conducted a financial evaluation based on the current characteristics of professional drones and the geographical dimensions of the region.
+
+Current Characteristics of Professional Drones:
+
+Average speed: 25 km/h
+Autonomy: 25 minutes
+Annual cost of drone surveillance service: €150,000
+Corsican Geographical Dimensions:
+
+Total forest area: 5,500 km²
+Area classified as Zone 10&+: 2,176 km²
+Area classified as Zone 6 to 10: 60.47 km²
+(...and other specified zones)
+Total Number of Drones Required: 1374
+Total Cost: €206.1 million per year
+
+Note: The annual budget allocated for fire surveillance in Corsica is €50 million.
+
+This financial evaluation considers the deployment of 1374 professional drones to cover the extensive forested areas efficiently. The calculation takes into account the average speed, autonomy, and annual cost of each drone, resulting in a comprehensive budget of €206.1 million per year. It's essential to note that this estimate exceeds the current annual budget for fire surveillance in Corsica, which stands at €50 million. Further discussions and adjustments may be necessary to align the financial strategy with the desired level of surveillance coverage and budget constraints.
 
 ## Conclusion
 
