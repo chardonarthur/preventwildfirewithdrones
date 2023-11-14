@@ -29,7 +29,7 @@ This index is seetling between 0 and 15 mainely and is an evaluation of the dang
 
 GI appears to be a good indicator of the risk a wildfire to appear.
 
-![Risks Map of Corsica](https://github.com/chardonarthur/preventwildfirewithdrones/blob/main/assets/risks_map.png)
+![Risks Map of Corsica](assets/risks_map.png)
 
 ## III. Altitude
 
