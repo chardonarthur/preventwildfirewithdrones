@@ -4,29 +4,26 @@ import csv
 import pandas as pd
 
 class Kalman:
-    def __init__(self,X0,P0,precision_baro_m=1, precision_gps_vz_ms=0.2,
+    def __init__(self, X0, P0, precision_baro_m=1, precision_gps_vz_ms=0.2,
                  bruit_modele_z_m=2, bruit_modele_vz_ms=4):
-        """X:matrice d'estimation(position,vitesse);
-        P:matrice de covariance ;
-        F:matrice d'état;
-        a:accélération(facteur extérieur);
-        Q:facteur de covariance;
-        R:estimation capteur;
-        Z:covariance capteur;"""
+        """X: state matrix (position, velocity);
+        P: covariance matrix;
+        F: state matrix;
+        a: acceleration (external factor);
+        Q: covariance factor;
+        R: sensor estimation;
+        Z: sensor covariance;"""
         self.P0 = P0
         self.X0 = X0
-
-        # R = [sigma_z² 0        ]
-        #     [0        sigma_vz²]
 
         self.R = np.diag([precision_baro_m**2, precision_gps_vz_ms**2])
         self.Q = np.diag([bruit_modele_z_m**2, bruit_modele_vz_ms**2])
         self.innov = None
         self.innov_alt = 0
         self.innov_vz = 0
-        H = np.eye(2)  # Identité d'ordre 2
-        # La mesure est identique (en unité, en rapport) à l'état, donc X = Z = HZ >> H = I2
-        # en effet, ce qu'on mesure est directement l'état (coup de chance).
+        H = np.eye(2) 
+        # Measurement is identical (in units, in proportion) to the state, so X = Z = HZ >> H = I2
+        # in fact, what we measure is directly the state (lucky guess).
         self.init_filter()
 
         self.record = {"t": [],
@@ -42,79 +39,78 @@ class Kalman:
         self.X = self.X0.copy()
 
     def predict(self, dt):
-        # B = facteur extérieur : B=np.array([[(dt**2)/2],[dt]])  à ajouter à X. Inutile ici.
+        # B = external factor: B=np.array([[(dt**2)/2],[dt]])  to be added to X. Not needed here.
 
         # definition
-        F=np.array([[1,-dt],[0,1]])
-        Ft=np.transpose(F)
+        F = np.array([[1, -dt], [0, 1]])
+        Ft = np.transpose(F)
 
-        # système
-        self.X=np.dot(F,self.X)                               # X= F*X+B"
-        self.P=np.dot(np.dot(F,self.P),Ft) + self.Q*dt**2     # P = F*P*Ft+Q"
+        # system
+        self.X = np.dot(F, self.X)  # X= F*X+B"
+        self.P = np.dot(np.dot(F, self.P), Ft) + self.Q * dt**2  # P = F*P*Ft+Q"
         self.record_filter(t)
 
-    def update_2D(self, Alt_mes, Vz_mes): # Pour fusionner simultanément altitude et vitesse GPS
+    def update_2D(self, Alt_mes, Vz_mes):  # To simultaneously merge altitude and GPS speed
         '''
-        H =  Identité d'ordre 2
-        Z = la mesure (à mettre en entrée de la fonction)
-        innovation = mesure expérimentale - mesure attendue '''
+        H = Identity of order 2
+        Z = measurement (to be input into the function)
+        innovation = experimental measurement - expected measurement '''
 
         # definition
-        Z = np.array([[Alt_mes],[Vz_mes]])
+        Z = np.array([[Alt_mes], [Vz_mes]])
         H = np.eye(2)
         Ht = np.transpose(H)
 
-        self.innov = Z - np.dot(H, self.X)  # H.X =  Z prédit !
-        cov_innov = np.dot(np.dot(H,self.P),Ht)+self.R
+        self.innov = Z - np.dot(H, self.X)  # H.X =  Z predicted!
+        cov_innov = np.dot(np.dot(H, self.P), Ht) + self.R
 
-        # système
+        # system
 
-        K = self.P @ Ht @ np.linalg.inv(cov_innov)    # K final = Ft*P*inv(F*P*Ht+R)"
-        self.X = self.X + K @ self.innov              # X final = x+Kf*(Z-H*X) = x + K * innov
-        self.P = self.P - K @ H @ self.P              # P final = P -(Kfinale*F*P)"
+        K = self.P @ Ht @ np.linalg.inv(cov_innov)  # K final = Ft*P*inv(F*P*Ht+R)"
+        self.X = self.X + K @ self.innov  # X final = x+Kf*(Z-H*X) = x + K * innov
+        self.P = self.P - K @ H @ self.P  # P final = P -(Kfinale*F*P)"
 
     def update_alt(self, alt_mes, t):
         '''
-        H =  [1, 0] : sélectionne l'état d'altitude
-        Z = la mesure (à mettre en entrée de la fonction)
-        innovation = mesure expérimentale - mesure attendue '''
+        H =  [1, 0] : selects the altitude state
+        Z = measurement (to be input into the function)
+        innovation = experimental measurement - expected measurement '''
 
         # definition
         Z = alt_mes
         H = np.array([[1, 0]])
         Ht = np.transpose(H)
 
-        self.innov_alt = Z - np.dot(H, self.X)  # H.X =  Z prédit = Alt !
-        cov_innov = np.dot(np.dot(H,self.P),Ht) + self.R[0][0]
+        self.innov_alt = Z - np.dot(H, self.X)  # H.X =  Z predicted = Alt!
+        cov_innov = np.dot(np.dot(H, self.P), Ht) + self.R[0][0]
 
-        # système
-        K = self.P @ Ht @ np.linalg.inv(cov_innov)    # Kfinale = Ft*P*inv(F*P*Ht+R)"
-        K0 = np.squeeze(K) # dimensions 1D
-        self.X = self.X + K0 * self.innov_alt              # Xfinale = x+Kf*(Z-H*X) = x + K * innov
-        self.P = self.P - K @ H @ self.P              # Pfinale = P -(Kfinale*F*P)"
+        # system
+        K = self.P @ Ht @ np.linalg.inv(cov_innov)  # K final = Ft*P*inv(F*P*Ht+R)"
+        K0 = np.squeeze(K)  # dimensions 1D
+        self.X = self.X + K0 * self.innov_alt  # X final = x+Kf*(Z-H*X) = x + K * innov
+        self.P = self.P - K @ H @ self.P  # P final = P -(Kfinale*F*P)"
 
         self.record_filter(t, inn_alt=self.innov_alt)
 
-
     def update_vz(self, vz_mes, t):
         '''
-        H =  [0, 1] : sélectionne l'état de vz
-        Z = la mesure (à mettre en entrée de la fonction)
-        innovation = mesure expérimentale - mesure attendue '''
+        H =  [0, 1] : selects the vz state
+        Z = measurement (to be input into the function)
+        innovation = experimental measurement - expected measurement '''
 
         # definition
         Z = vz_mes
         H = np.array([[0, 1]])
         Ht = np.transpose(H)
 
-        self.innov_vz = Z - np.dot(H, self.X)  # H.X =  Z prédit = VZ !
-        cov_innov = np.dot(np.dot(H,self.P),Ht) + self.R[1][1]
+        self.innov_vz = Z - np.dot(H, self.X)  # H.X =  Z predicted = VZ!
+        cov_innov = np.dot(np.dot(H, self.P), Ht) + self.R[1][1]
 
-        # système
-        K = self.P @ Ht @ np.linalg.inv(cov_innov)    # Kfinale = Ft*P*inv(F*P*Ht+R)"
-        K0 = np.squeeze(K) # dimensions 1D
-        self.X = self.X + K0 * self.innov_vz              # Xfinale = x+Kf*(Z-H*X) = x + K * innov
-        self.P = self.P - K @ H @ self.P              # Pfinale = P -(Kfinale*F*P)"
+        # system
+        K = self.P @ Ht @ np.linalg.inv(cov_innov)  # K final = Ft*P*inv(F*P*Ht+R)"
+        K0 = np.squeeze(K)  # dimensions 1D
+        self.X = self.X + K0 * self.innov_vz  # X final = x+Kf*(Z-H*X) = x + K * innov
+        self.P = self.P - K @ H @ self.P  # P final = P -(Kfinale*F*P)"
         self.record_filter(t, inn_vz=self.innov_vz)
 
     def record_filter(self, t, inn_alt=np.nan, inn_vz=np.nan):
@@ -130,6 +126,7 @@ class Kalman:
         return pd.DataFrame(self.record)
 
 
+
 if __name__ == "__main__":
     GPS_path = 'DJIFlightRecord_2021-11-06 alpha.csv'
     gps = pd.read_csv(GPS_path)
@@ -138,7 +135,7 @@ if __name__ == "__main__":
     baro = pd.read_csv(Baro_path)
 
     X0 = np.array([0, 0])
-    P0 = np.diag([0.01,0.01])  #P0 ini : précision alt : 0.1m et 0.1m/s(0.01 = 0.1m*0.1m)
+    P0 = np.diag([0.01,0.01])  #P0 ini : precision alt : 0.1m and 0.1m/s(0.01 = 0.1m*0.1m)
 
     t_gps = gps.timestamp
     alt_gps = gps.Alt_VPS
@@ -148,7 +145,7 @@ if __name__ == "__main__":
     alt_baro = baro.Alt_Baro
 
     kalman = Kalman(X0, P0, precision_baro_m=0.5, precision_gps_vz_ms=0.2,
-                    bruit_modele_z_m=0.0, bruit_modele_vz_ms=2) # il faut remplir ici toutes les valeurs d'init de la classe
+                    bruit_modele_z_m=0.0, bruit_modele_vz_ms=2)
 
     loop = {"n_baro": 0,
             "n_gps": 0}

@@ -129,12 +129,12 @@ def file_end():
                     'ISI':C16,
                     'SB':C17})
 
-    df.to_csv('liste_incendies_ du_26_01_2022_carte', index=False)
+    df.to_csv('../../data/french_wildfires.csv', index=False)
 
 
-def séparation_colomnes():
+def column_seperation():
     
-    GPS_path = 'liste_incendies_ du_26_01_2022_v2.csv' #nom fichier
+    GPS_path = '../../data/french_wildfires.csv'
     gps = pd.read_csv(GPS_path)
     Co=gps.Alerte
 
@@ -154,7 +154,6 @@ def séparation_colomnes():
     C10=gps.Origine_de_l_alerte
     C11=gps.Surface_parcourue_m2
 
-    #print (len(C1),len(C3),len(C4),len(C5),len(C6),len(C7),len(C8),len(C9),len(C9p),len(C10))
 
     df = pd.DataFrame({'Annee':C1,
                    #'Numéro':C2,
@@ -169,5 +168,5 @@ def séparation_colomnes():
                    'Origine_de_l_alerte':C10,
                    'Surface_parcourue_m2':C11})
 
-    df.to_csv('liste_incendies_ du_26_01_2022_evolved', index=False)
+    df.to_csv('../../data/french_wildfires_completed.csv', index=False)
 
