@@ -93,3 +93,12 @@ This financial evaluation considers the deployment of 1374 professional drones t
 Parameters may need adjustment after further experimentation to reduce the necessary budget. These parameters must be chosen following rigorous testing.
 
 In conclusion, we have a comprehensive surveillance model achievable with the new surveillance tool - drones. These drones can incorporate various technologies at a relatively low cost.
+
+
+## Bibliographic References
+
+1. Inria de Paris: [BurnMonitor IoT Detection of Forest Fires](https://www.inria.fr/fr/burnmonitor-iot-detection-feux-foret)
+2. Bzorg: [How a Kalman Filter Works in Pictures](http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)
+3. Azur Drone: Corporate library
+4. Prométhée: [Prométhée - Forest Fires Database](https://www.promethee.com/default/incendies)
+5. Élise FOULATIER: [Simulation de la propagation d'un feu de forêt (PDF)](https://eduscol.education.fr/sti/sites/eduscol.education.fr.sti/files/ressources/pedagogiques/13640/13640
