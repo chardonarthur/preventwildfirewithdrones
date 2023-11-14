@@ -1,4 +1,5 @@
-# Wildfires threaten the lives of thousands of humans each year. This led us to ponder on how to prevent the development of fires using drones?
+Wildfires threaten the lives of thousands of humans each year. This led us to ponder on 
+# How to prevent the development of fires using drones?
 
 I. Drones: Preventing Forest Fires
 
