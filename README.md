@@ -68,16 +68,16 @@ In order to establish a robust forest surveillance system in Corsica, we have co
 
 Current Characteristics of Professional Drones:
 
-- Average speed: 25 km/h
-- Autonomy: 25 minutes
-- Annual cost of drone surveillance service: €150,000
+* Average speed: 25 km/h
+* Autonomy: 25 minutes
+* Annual cost of drone surveillance service: €150,000
 
 
 Corsican Geographical Dimensions:
 
-- Total forest area: 5,500 km²
-- Area classified as Zone 10&+: 2,176 km²
-- Area classified as Zone 6 to 10: 60.47 km²
+* Total forest area: 5,500 km²
+* Area classified as Zone 10&+: 2,176 km²
+* Area classified as Zone 6 to 10: 60.47 km²
 (...and other specified zones)
 
 
