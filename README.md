@@ -38,6 +38,9 @@ Now that we know which areas to monitor, we need to choose the height at which t
 Using different-sized cardboard cutouts, we noted the heights from which the cutout appeared smaller than a certain number of pixels. By correlating this with the drone's flight data, we could determine the drone's altitude at the moment of the video image. This allowed us to create a graph, which initially seemed linear. However, discrepancies raised concerns, leading to discussions with engineers from Azure Drone, who highlighted uncertainties in drone position.
 
 Using the Kalman Filter to merge data from various onboard sensors, we obtained a more accurate altitude estimation, with a 95% confidence interval of around 0.8m. We can model this curve as an almost consistently linear line, closely approaching the origin.
+![Improving Precision](assets/approximation_with_kalman.png)
+![Improving Precision](assets/linear_model.png)
+![Kalman_working](assets/kalman_filter_in_french.png)
 
 ## IV. Final Surveillance Model
 
